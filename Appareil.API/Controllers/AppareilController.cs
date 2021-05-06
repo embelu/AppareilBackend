@@ -36,7 +36,7 @@ namespace Appareil.API.Controllers
             return Ok(_appareilBL.GetAll());
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public ActionResult<int> Update(AppareilDTO appareilDTO)
         {
             return Ok(_appareilBL.Update(appareilDTO));

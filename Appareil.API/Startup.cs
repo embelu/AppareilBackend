@@ -23,6 +23,8 @@ namespace Appareil.API
 {
     public class Startup
     {
+        private readonly string CORS_RULE_NAME = "AllowAll";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,6 +35,14 @@ namespace Appareil.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(o => o.AddPolicy(CORS_RULE_NAME, builder =>
+            {
+                builder
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowAnyOrigin();
+            }));
+
             var connectionDB = Configuration.GetConnectionString("FormationDB");
             services.AddDbContext<DB_FormationContext>(options => options.UseSqlServer(connectionDB));
 
@@ -60,6 +70,8 @@ namespace Appareil.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(CORS_RULE_NAME);
 
             app.UseRouting();
 
