@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext "Server=S319SQLT1\DEVSQL319;Database=DB_Formation;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -t Appareils_Ludo -OutputDir Entities -Force
