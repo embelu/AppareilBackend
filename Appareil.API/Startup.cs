@@ -1,7 +1,14 @@
+using Appareil.BL;
+using Appareil.BL.Implementations;
+using Appareil.BL.Interfaces;
+using Appareil.Repository.Entities;
+using Appareil.Repository.Interfaces;
+using Appareil.Repository.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,7 +33,15 @@ namespace Appareil.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionDB = Configuration.GetConnectionString("FormationDB");
+            services.AddDbContext<DB_FormationContext>(options => options.UseSqlServer(connectionDB));
+
+            services.AddTransient<IAppareilBL, AppareilBL>();
+            services.AddTransient<IAppareilRepository, AppareilRepository>();
+
             services.AddControllers();
+
+
 
             services.AddSwaggerGen(c =>
             {

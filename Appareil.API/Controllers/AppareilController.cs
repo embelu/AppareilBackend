@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Appareil.BL.Implementations;
+using Appareil.BL.Interfaces;
+using Appareil.BL.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,36 +15,45 @@ namespace Appareil.API.Controllers
     [ApiController]
     public class AppareilController : ControllerBase
     {
+        private readonly IAppareilBL _appareilBL;
+
+        public AppareilController(IAppareilBL appareilBL)
+        {
+            _appareilBL = appareilBL;
+        }
+
+
         // GET: api/<ApprareilController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<ApprareilController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult<AppareilDTO> GetById(int id)
         {
-            return "value";
+            return Ok(_appareilBL.GetById(id));
         }
 
-        // POST api/<ApprareilController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet]
+        public ActionResult<List<AppareilDTO>> GetByAll()
         {
+            return Ok(_appareilBL.GetAll());
         }
 
-        // PUT api/<ApprareilController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult<int> Update(AppareilDTO appareilDTO)
         {
+            return Ok(_appareilBL.Update(appareilDTO));
         }
 
-        // DELETE api/<ApprareilController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPost]
+        public ActionResult<int> Create([FromBody] AppareilDTO appareilDTO)
         {
+            return Ok(_appareilBL.Create(appareilDTO));                     
         }
+
+        [HttpDelete("id")]
+        public ActionResult<int> Delete(int id)
+        {
+            return Ok(_appareilBL.Delete(id));
+        }
+
+
     }
 }

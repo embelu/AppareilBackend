@@ -4,7 +4,10 @@ using System.Text;
 
 namespace Appareil.BL.Models
 {
-    class AppareilDTO
+    public class AppareilDTO
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Status { get; set; }
     }
 }

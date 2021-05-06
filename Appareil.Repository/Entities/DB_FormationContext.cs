@@ -34,9 +34,9 @@ namespace Appareil.Repository.Entities
 
             modelBuilder.Entity<AppareilsLudo>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("Appareils_Ludo");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
