@@ -45,7 +45,7 @@ namespace Appareil.API.Controllers
         [HttpPost]
         public ActionResult<int> Create([FromBody] AppareilDTO appareilDTO)
         {
-            return Ok(_appareilBL.Create(appareilDTO));                     
+            return Ok(_appareilBL.Create(appareilDTO));
         }
 
         [HttpDelete("id")]

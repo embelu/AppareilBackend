@@ -11,10 +11,17 @@ namespace Appareil.Repository.Repositories
     {
         readonly DB_FormationContext _context;
 
-        public AppareilRepository(DB_FormationContext dB_FormationContext)
+        //public AppareilRepository(DB_FormationContext dB_FormationContext)
+        //{
+        //    _context = dB_FormationContext;
+        //}
+
+
+        public AppareilRepository()
         {
-            _context = dB_FormationContext;
+            _context = new DB_FormationContext();
         }
+
 
         public int Create(AppareilsLudo appareilsLudo)
         {
@@ -39,7 +46,9 @@ namespace Appareil.Repository.Repositories
 
         public AppareilsLudo GetById(int id)
         {
-            return _context.AppareilsLudos.Where(x => x.Id == id).FirstOrDefault();
+            //return _context.AppareilsLudos.Where(x => x.Id == id).FirstOrDefault();
+
+            return _context.AppareilsLudos.Find(id);
         }
 
         public int Update(AppareilsLudo appareilsLudo)

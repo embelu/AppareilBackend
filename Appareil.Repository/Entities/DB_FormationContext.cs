@@ -36,17 +36,17 @@ namespace Appareil.Repository.Entities
             {
                 entity.ToTable("Appareils_Ludo");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(20)
-                    .IsFixedLength(true);
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Status)
                     .IsRequired()
-                    .HasMaxLength(20)
-                    .IsFixedLength(true);
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

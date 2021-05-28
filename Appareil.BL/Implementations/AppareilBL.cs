@@ -21,7 +21,7 @@ namespace Appareil.BL.Implementations
         {
             AppareilsLudo appareilsLudo = new AppareilsLudo();
 
-            appareilsLudo.Id = appareilDTO.Id;
+            //appareilsLudo.Id = appareilDTO.Id;
             appareilsLudo.Name = appareilDTO.Name;
             appareilsLudo.Status = appareilDTO.Status;
 
@@ -42,7 +42,7 @@ namespace Appareil.BL.Implementations
 
             foreach (var item in appareilsLudos)
             {
-                appareils.Add(new AppareilDTO() {Id = item.Id, Name = item.Name, Status = item.Status });
+                appareils.Add(new AppareilDTO() {Id = item.Id, Name = item.Name, Status = item.Status.Trim() });
             }
 
             return appareils;
